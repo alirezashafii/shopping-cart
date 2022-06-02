@@ -1,0 +1,20 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+:root {
+    --primary-color: #F43F5E;
+    --secondary-color: #FDA4AF;
+    --main-white: #FFF1F2;
+    --main-black: #121314;
+}
