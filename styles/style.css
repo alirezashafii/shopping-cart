@@ -10,6 +10,7 @@
 
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -48,6 +49,12 @@ body.dark {
 .dark footer button {
   color: var(--main-white);
 }
+.dark footer button a {
+  color: var(--main-white);
+}
+.dark .cart {
+  background-color: var(--main-black);
+}
 
 nav {
   width: 100%;
@@ -74,10 +81,26 @@ nav svg {
 .container {
   max-width: 1280px;
 }
-h1 {
+/* @keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+} */
+h1 a {
   font-size: calc(2rem + 0.33vw);
   font-weight: 700;
   color: var(--primary-color);
+  /* color: transparent;
+  background: linear-gradient(-45deg, #E11D48, #F472B6, #FB7185, #BE123C);
+  background-size: 400% 400%;
+  background-clip: text;
+  animation: gradient 15s ease infinite; */
 }
 .counter-parent {
   position: relative;
@@ -99,6 +122,12 @@ h1 {
 @media (min-width: 640px) {
   .nav-child {
     padding: 0 60px;
+  }
+}
+@media (min-width: 1280px) {
+  .nav-child {
+    justify-content: space-around;
+    padding: 0;
   }
 }
 
@@ -216,6 +245,7 @@ main .item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 5px;
 }
 main .item:hover {
   transform: scale(1.02);
@@ -273,6 +303,9 @@ footer button {
   cursor: pointer;
   outline: none;
 }
+footer button a {
+  color: var(--main-black);
+}
 footer button:hover,
 footer button:active,
 footer button:focus {
@@ -283,4 +316,105 @@ footer button:focus {
 }
 footer button:active {
   transform: translateY(-1px);
+}
+
+aside {
+  height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cart {
+  width: 300px;
+  height: auto;
+  min-height: 150px;
+  background-color: var(--main-white);
+  border: 3px solid #BE123C;
+  border-radius: 9px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 300ms ease-in-out;
+  z-index: 10;
+  transform: translateY(-100vh);
+  opacity: 0;
+}
+.cart img {
+  width: 80px;
+  border-radius: 6px;
+}
+.cart svg {
+  width: 25px;
+  cursor: pointer;
+}
+.cart h3 {
+  height: 30px;
+}
+.cart-content {
+  width: 100%;
+  height: 80px;
+  padding: 10px 0;
+}
+.cart-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart-item-controller {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.cart-item-controller p {
+  font-weight: 700;
+  line-height: 1rem;
+}
+.chevron-up {
+  color: #14532D;
+}
+.chevron-down {
+  color: #BE123C;
+}
+.cart-footer {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.cart-total {
+  font-weight: 700;
+}
+.btn {
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 6px;
+  font-family: "Advent Pro", sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  transition: all 150ms ease-out;
+  cursor: pointer;
+}
+.btn:active {
+  transform: translateY(-3px);
+}
+.cart-footer .cart-item-confirm {
+  color: var(--main-white);
+  background-color: var(--primary-color);
+}
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 5;
+  display: none;
 }
