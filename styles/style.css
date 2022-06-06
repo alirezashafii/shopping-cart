@@ -81,7 +81,7 @@ nav svg {
 .container {
   max-width: 1280px;
 }
-/* @keyframes gradient {
+@keyframes gradient {
   0% {
     background-position: 0% 50%;
   }
@@ -91,16 +91,17 @@ nav svg {
   100% {
     background-position: 0% 50%;
   }
-} */
+}
 h1 a {
   font-size: calc(2rem + 0.33vw);
   font-weight: 700;
-  color: var(--primary-color);
-  /* color: transparent;
-  background: linear-gradient(-45deg, #E11D48, #F472B6, #FB7185, #BE123C);
+  /* color: var(--primary-color); */
+  color: transparent;
+  background: linear-gradient(-45deg, #E11D48, #FB923C, #FACC15, #BE123C);
   background-size: 400% 400%;
   background-clip: text;
-  animation: gradient 15s ease infinite; */
+  -webkit-background-clip: text;
+  animation: gradient 15s ease infinite;
 }
 .counter-parent {
   position: relative;
@@ -255,6 +256,13 @@ main .item:hover {
   height: 70%;
   object-fit: cover;
   border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+.item img:active,
+.item img:hover {
+  filter: hue-rotate(45deg) grayscale(50%);
+  transform: scale(0.99);
 }
 .description {
   width: 100%;
@@ -327,7 +335,7 @@ aside {
 .cart {
   width: 300px;
   height: auto;
-  min-height: 150px;
+  min-height: 200px;
   background-color: var(--main-white);
   border: 3px solid #BE123C;
   border-radius: 9px;
@@ -393,7 +401,7 @@ aside {
   outline: none;
   border: none;
   border-radius: 3px;
-  padding: 5px 6px;
+  padding: 5px 10px;
   font-family: "Advent Pro", sans-serif;
   text-transform: uppercase;
   font-weight: 700;
