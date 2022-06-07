@@ -1,98 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shopping Cart</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@200;400;700&display=swap" rel="stylesheet"> 
-    <link rel="icon" type="image/png" href="#">
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@200;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="#" />
+    <link rel="stylesheet" href="./styles/style.css" />
     <script type="module" defer="defer" src="./javascript/main.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <aside>
-        <div class="cart">
-            <h3>Your Cart</h3>
-            <div class="cart-content">
-                <div class="cart-item">
-                    <img src="./assets/images/future-plant.jpg" alt="">
-                    <div class="cart-item-desc">
-                        <h4>product title</h4>
-                        <h5>$0</h5>
-                    </div>
-                    <div class="cart-item-controller">
-                        <svg class="chevron-up" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
-                        </svg>
-                        <p>1</p>
-                        <svg class="chevron-down" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <svg class="trash" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                    </svg>
-                </div>
+      <div class="cart">
+        <h3>Your Cart</h3>
+        <div class="cart-content">
+          <div class="cart-item">
+            <img src="./assets/images/future-plant.jpg" alt="" />
+            <div class="cart-item-desc">
+              <h4>product title</h4>
+              <h5>$0</h5>
             </div>
-            <div class="cart-footer">
-                <span class="cart-total">Total price: $0</span>
-                <button class="btn clear-cart">clear</button>
-                <button class="btn cart-item-confirm">confirm</button>
+            <div class="cart-item-controller">
+              <svg
+                class="chevron-up"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <p>1</p>
+              <svg
+                class="chevron-down"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
             </div>
+            <svg
+              class="trash"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </div>
         </div>
+        <div class="cart-footer">
+          <span class="cart-total">Total price: $0</span>
+          <button class="btn clear-cart">clear</button>
+          <button class="btn cart-item-confirm">confirm</button>
+        </div>
+      </div>
     </aside>
     <header>
-        <nav>
-            <div class="container nav-child">
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
-                    </svg>
-                </span>
-                <h1>
-                    <a href="https://github.com/alirezashafii" target="_blank">
-                        Shopping Cart
-                    </a>
-                </h1>
-                <span class="counter-parent">
-                    <span class="counter">0</span>
-                    <a href="#">
-                        <svg class="cartIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-                        </svg>
-                    </a>
-                </span>
-            </div>
-        </nav>
-        <div class="info-parent">
-            <div class="container info">
-                <div class="info-texts">
-                    <h2>Shopping Cart Project</h2>
-                    <p>
-                      Based on object oriented programming in <strong>JavaScript</strong>.
-                    </p>
-                    <label class="switch">
-                        <input type="checkbox" />
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                <img class="info-image" src="./assets/images/cart.png" alt="">
-            </div>
+      <nav>
+        <div class="container nav-child">
+          <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </span>
+          <h1>
+            <a href="https://github.com/alirezashafii" target="_blank">
+              Shopping Cart
+            </a>
+          </h1>
+          <span class="counter-parent">
+            <span class="counter">0</span>
+            <a href="#">
+              <svg
+                class="cartIcon"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
+                />
+              </svg>
+            </a>
+          </span>
         </div>
+      </nav>
+      <div class="info-parent">
+        <div class="container info">
+          <div class="info-texts">
+            <h2>Shopping Cart Project</h2>
+            <p>
+              Based on object oriented programming in
+              <strong>JavaScript</strong>.
+            </p>
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <img class="info-image" src="./assets/images/cart.png" alt="" />
+        </div>
+      </div>
     </header>
     <main>
-        <div class="container main-child"></div>
+      <div class="container main-child"></div>
     </main>
     <footer>
-        <button class="cartBtn">
-            <a href="#">
-                Check out
-            </a>
-        </button>
+      <button class="cartBtn">
+        <a href="#"> Check out </a>
+      </button>
     </footer>
     <div class="backdrop"></div>
-</body>
+  </body>
 </html>
