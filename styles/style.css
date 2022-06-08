@@ -52,7 +52,7 @@ body.dark {
 .dark footer button a {
   color: var(--main-white);
 }
-.dark .cart {
+.dark .cart-modal {
   background-color: var(--main-black);
 }
 
@@ -332,7 +332,7 @@ aside {
   justify-content: center;
   align-items: center;
 }
-.cart {
+.cart-modal {
   width: 300px;
   height: auto;
   min-height: 200px;
@@ -349,15 +349,15 @@ aside {
   transform: translateY(-100vh);
   opacity: 0;
 }
-.cart img {
+.cart-modal img {
   width: 80px;
   border-radius: 6px;
 }
-.cart svg {
+.cart-modal svg {
   width: 25px;
   cursor: pointer;
 }
-.cart h3 {
+.cart-modal h3 {
   height: 30px;
 }
 .cart-content {

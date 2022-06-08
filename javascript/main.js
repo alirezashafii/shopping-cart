@@ -1,5 +1,5 @@
 const toggler = document.querySelector(".slider");
-const cart = document.querySelector(".cart");
+const cartModal = document.querySelector(".cart-modal");
 const cartIcon = document.querySelector(".cartIcon");
 const cartBtn = document.querySelector(".cartBtn");
 const backDrop = document.querySelector(".backdrop");
@@ -7,6 +7,8 @@ const confirmBtn = document.querySelector(".cart-item-confirm");
 const productsParent = document.querySelector(".main-child");
 
 import { productsData } from "./products.js";
+
+let cart = [];
 
 toggler.addEventListener("click", () => {
   document.body.classList.toggle("dark");
@@ -18,8 +20,8 @@ cartBtn.addEventListener("click", showFunc);
 
 function showFunc() {
   backDrop.style.display = "block";
-  cart.style.transform = "translateY(30vh)";
-  cart.style.opacity = "1";
+  cartModal.style.transform = "translateY(30vh)";
+  cartModal.style.opacity = "1";
 }
 
 backDrop.addEventListener("click", closeFunc);
@@ -28,8 +30,8 @@ confirmBtn.addEventListener("click", closeFunc);
 
 function closeFunc() {
   backDrop.style.display = "none";
-  cart.style.transform = "translateY(-100vh)";
-  cart.style.opacity = "0";
+  cartModal.style.transform = "translateY(-100vh)";
+  cartModal.style.opacity = "0";
 }
 
 class Products {
@@ -55,11 +57,41 @@ class Ui {
       productsParent.innerHTML = result;
     });
   }
+  getAddToCartBtn() {
+    const addToCartBtn = document.querySelectorAll(".add-to-cart");
+    const buttons = [...addToCartBtn];
+    if (cart.length === 0) {
+      cart = JSON.parse(localStorage.getItem("cart"));
+      if(cart === null) cart = [];
+    }
+    buttons.forEach((btn) => {
+      const id = btn.dataset.id;
+      const isInCart = cart.find((p) => p.id === parseInt(id));
+      if (isInCart) {
+        btn.innerText = "added";
+        btn.disabled = true;
+      }
+      btn.addEventListener("click", (evt) => {
+        evt.target.innerText = "added";
+        evt.target.disabled = true;
+        const addedProduct = Storage.getProduct(id);
+        cart = [...cart, { ...addedProduct, quantity: 1 }];
+        Storage.saveCart(cart);
+      });
+    });
+  }
 }
 
 class Storage {
   static saveProducts(datas) {
     localStorage.setItem("products", JSON.stringify(datas));
+  }
+  static getProduct(id) {
+    const _products = JSON.parse(localStorage.getItem("products"));
+    return _products.find((p) => p.id === parseInt(id));
+  }
+  static saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 }
 
@@ -68,5 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const productsData = products.getProducts();
   const ui = new Ui();
   ui.displayProducts(productsData);
+  ui.getAddToCartBtn();
   Storage.saveProducts(productsData);
 });
