@@ -5,6 +5,8 @@ const cartBtn = document.querySelector(".cartBtn");
 const backDrop = document.querySelector(".backdrop");
 const confirmBtn = document.querySelector(".cart-item-confirm");
 const productsParent = document.querySelector(".main-child");
+const cartItems = document.querySelector(".counter");
+const cartTotal = document.querySelector(".cart-total");
 
 // Scroll Tracker
 import "https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js";
@@ -83,7 +85,7 @@ class Ui {
     const buttons = [...addToCartBtn];
     if (cart.length === 0) {
       cart = JSON.parse(localStorage.getItem("cart"));
-      if(cart === null) cart = [];
+      if (cart === null) cart = [];
     }
     buttons.forEach((btn) => {
       const id = btn.dataset.id;
@@ -91,15 +93,27 @@ class Ui {
       if (isInCart) {
         btn.innerText = "added";
         btn.disabled = true;
+        btn.style.color = "#FB7185";
       }
       btn.addEventListener("click", (evt) => {
         evt.target.innerText = "added";
         evt.target.disabled = true;
+        evt.target.style.color = "#FB7185";
         const addedProduct = Storage.getProduct(id);
         cart = [...cart, { ...addedProduct, quantity: 1 }];
         Storage.saveCart(cart);
+        this.setCartValue(cart);
       });
     });
+  }
+  setCartValue(cart) {
+    let tempCartItems = 0;
+    const totalPrice = cart.reduce((acc, curr) => {
+      tempCartItems += curr.quantity;
+      return acc + curr.quantity * curr.price;
+    }, 0);
+    cartTotal.innerText = `Total price: $${totalPrice.toFixed(2)}`;
+    cartItems.innerText = tempCartItems;
   }
 }
 

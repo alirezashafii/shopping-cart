@@ -2,13 +2,13 @@ export const productsData = [
   {
     id: 1,
     title: "Bicycle",
-    price: 766,
+    price: 766.42,
     imageUrl: "./assets/images/cycle.jpg",
   },
   {
     id: 2,
     title: "E-Scooter",
-    price: 989,
+    price: 989.99,
     imageUrl: "./assets/images/e-scooter.jpg",
   },
   {
@@ -26,7 +26,7 @@ export const productsData = [
   {
     id: 5,
     title: "Future Plant",
-    price: 199,
+    price: 199.73,
     imageUrl: "./assets/images/future-plant.jpg",
   },
 ];
