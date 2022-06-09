@@ -426,3 +426,14 @@ aside {
   z-index: 5;
   display: none;
 }
+
+@media (max-width: 640px) {
+  .scroll-tracker {
+    position: fixed;
+    inset: 0 0 auto;
+    transform-origin: left;
+    background-color: var(--primary-color);
+    height: 5px;
+    z-index: 4;
+  }
+}
