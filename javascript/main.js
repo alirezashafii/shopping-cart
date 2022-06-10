@@ -7,6 +7,7 @@ const confirmBtn = document.querySelector(".cart-item-confirm");
 const productsParent = document.querySelector(".main-child");
 const cartItems = document.querySelector(".counter");
 const cartTotal = document.querySelector(".cart-total");
+const cartContent = document.querySelector(".cart-content");
 
 // Scroll Tracker
 import "https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js";
@@ -43,7 +44,7 @@ cartBtn.addEventListener("click", showFunc);
 
 function showFunc() {
   backDrop.style.display = "block";
-  cartModal.style.transform = "translateY(30vh)";
+  cartModal.style.transform = "translateY(40vh)";
   cartModal.style.opacity = "1";
 }
 
@@ -99,10 +100,11 @@ class Ui {
         evt.target.innerText = "added";
         evt.target.disabled = true;
         evt.target.style.color = "#FB7185";
-        const addedProduct = Storage.getProduct(id);
-        cart = [...cart, { ...addedProduct, quantity: 1 }];
+        const addedProduct = { ...Storage.getProduct(id), quantity: 1 };
+        cart = [...cart, addedProduct];
         Storage.saveCart(cart);
         this.setCartValue(cart);
+        this.addCartItem(addedProduct);
       });
     });
   }
@@ -114,6 +116,63 @@ class Ui {
     }, 0);
     cartTotal.innerText = `Total price: $${totalPrice.toFixed(2)}`;
     cartItems.innerText = tempCartItems;
+  }
+  addCartItem(cartItem) {
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
+    div.innerHTML = `<img src=${cartItem.imageUrl} alt="" />
+                    <div class="cart-item-desc">
+                      <h4>${cartItem.title}</h4>
+                      <h5>$${cartItem.price}</h5>
+                    </div>
+                    <div class="cart-item-controller">
+                      <svg
+                        class="chevron-up"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                      <p>${cartItem.quantity}</p>
+                      <svg
+                        class="chevron-down"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <svg
+                      class="trash"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>`;
+    cartContent.appendChild(div);
+  }
+  setupApp() {
+    cart = Storage.getCart() || [];
+    cart.forEach((cartItem) => this.addCartItem(cartItem));
+    this.setCartValue(cart);
   }
 }
 
@@ -128,12 +187,16 @@ class Storage {
   static saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
+  static getCart() {
+    return JSON.parse(localStorage.getItem("cart"));
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   const products = new Products();
   const productsData = products.getProducts();
   const ui = new Ui();
+  ui.setupApp();
   ui.displayProducts(productsData);
   ui.getAddToCartBtn();
   Storage.saveProducts(productsData);

@@ -362,7 +362,7 @@ aside {
 }
 .cart-content {
   width: 100%;
-  height: 80px;
+  min-height: 80px;
   padding: 10px 0;
 }
 .cart-item {
@@ -370,6 +370,7 @@ aside {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 5px;
 }
 .cart-item-controller {
   display: flex;
@@ -416,6 +417,10 @@ aside {
 .cart-footer .cart-item-confirm {
   color: var(--main-white);
   background-color: var(--primary-color);
+  margin-left: 5px;
+}
+.clear-cart {
+  border: 1px solid var(--primary-color);
 }
 .backdrop {
   background-color: rgba(0, 0, 0, 0.9);
