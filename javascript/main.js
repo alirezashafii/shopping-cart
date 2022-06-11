@@ -8,6 +8,7 @@ const productsParent = document.querySelector(".main-child");
 const cartItems = document.querySelector(".counter");
 const cartTotal = document.querySelector(".cart-total");
 const cartContent = document.querySelector(".cart-content");
+const clearCart = document.querySelector(".clear-cart");
 
 // Scroll Tracker
 import "https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js";
@@ -33,6 +34,7 @@ scrollTracker.animate(
 import { productsData } from "./products.js";
 
 let cart = [];
+let domButtons = [];
 
 toggler.addEventListener("click", () => {
   document.body.classList.toggle("dark");
@@ -84,6 +86,7 @@ class Ui {
   getAddToCartBtn() {
     const addToCartBtn = document.querySelectorAll(".add-to-cart");
     const buttons = [...addToCartBtn];
+    domButtons = buttons;
     if (cart.length === 0) {
       cart = JSON.parse(localStorage.getItem("cart"));
       if (cart === null) cart = [];
@@ -126,7 +129,7 @@ class Ui {
                       <h5>$${cartItem.price}</h5>
                     </div>
                     <div class="cart-item-controller">
-                      <svg
+                      <svg data-id=${cartItem.id}
                         class="chevron-up"
                         xmlns="http://www.w3.org/2000/svg"
                         class="h-5 w-5"
@@ -140,7 +143,7 @@ class Ui {
                         />
                       </svg>
                       <p>${cartItem.quantity}</p>
-                      <svg
+                      <svg data-id=${cartItem.id}
                         class="chevron-down"
                         xmlns="http://www.w3.org/2000/svg"
                         class="h-5 w-5"
@@ -154,7 +157,7 @@ class Ui {
                         />
                       </svg>
                     </div>
-                    <svg
+                    <svg data-id=${cartItem.id}
                       class="trash"
                       xmlns="http://www.w3.org/2000/svg"
                       class="h-5 w-5"
@@ -173,6 +176,27 @@ class Ui {
     cart = Storage.getCart() || [];
     cart.forEach((cartItem) => this.addCartItem(cartItem));
     this.setCartValue(cart);
+    this.cartLogic();
+  }
+  cartLogic() {
+    clearCart.addEventListener("click", () => {
+      cart.forEach((cItem) => this.removeItem(cItem.id));
+      while (cartContent.children.length) {
+        cartContent.removeChild(cartContent.children[0]);
+      }
+      closeFunc();
+    });
+  }
+  removeItem(id) {
+    cart = cart.filter((cItem) => cItem.id !== id);
+    this.setCartValue(cart);
+    Storage.saveCart(cart);
+    const button = domButtons.find(
+      (btn) => parseInt(btn.dataset.id) === parseInt(id)
+    );
+    button.innerText = "add to cart";
+    button.disabled = false;
+    button.style.color = "#E11D48";
   }
 }
 
@@ -188,7 +212,9 @@ class Storage {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
   static getCart() {
-    return JSON.parse(localStorage.getItem("cart"));
+    return JSON.parse(localStorage.getItem("cart"))
+      ? JSON.parse(localStorage.getItem("cart"))
+      : [];
   }
 }
 

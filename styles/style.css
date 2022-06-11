@@ -43,9 +43,6 @@ body.dark {
 .dark .description {
   color: var(--secondary-color);
 }
-.dark .item button {
-  color: var(--primary-color);
-}
 .dark footer button {
   color: var(--main-white);
 }
@@ -278,6 +275,7 @@ main .item:hover {
   font-family: sans-serif, "Advent Pro";
 }
 .item button {
+  color: #E11D48;
   outline: none;
   border: none;
   padding: 10px 15px;
@@ -301,7 +299,8 @@ footer button {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2.5px;
-  font-weight: 200;
+  font-family: "Advent Pro", sans-serif;
+  font-weight: 700;
   color: var(--main-black);
   background-color: transparent;
   border: none;
@@ -437,7 +436,7 @@ aside {
     position: fixed;
     inset: 0 0 auto;
     transform-origin: left;
-    background-color: var(--primary-color);
+    background: linear-gradient(to right, #F43F5E, #E11D48);
     height: 5px;
     z-index: 4;
   }
