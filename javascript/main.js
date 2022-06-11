@@ -186,6 +186,40 @@ class Ui {
       }
       closeFunc();
     });
+    cartContent.addEventListener("click", (evt) => {
+      if (evt.target.classList.contains("chevron-up")) {
+        const addQuantity = evt.target;
+        const addedItem = cart.find(
+          (cItem) => cItem.id == addQuantity.dataset.id
+        );
+        addedItem.quantity++;
+        this.setCartValue(cart);
+        Storage.saveCart(cart);
+        addQuantity.nextElementSibling.innerText = addedItem.quantity;
+      } else if (evt.target.classList.contains("trash")) {
+        const removeItem = evt.target;
+        const removedItem = cart.find(
+          (cItem) => cItem.id == removeItem.dataset.id
+        );
+        this.removeItem(removedItem.id);
+        Storage.saveCart(cart);
+        cartContent.removeChild(removeItem.parentElement);
+      } else if (evt.target.classList.contains("chevron-down")) {
+        const subQuantity = evt.target;
+        const substractedItem = cart.find(
+          (cItem) => cItem.id == subQuantity.dataset.id
+        );
+        if (substractedItem.quantity === 1) {
+          this.removeItem(substractedItem.id);
+          cartContent.removeChild(subQuantity.parentElement.parentElement);
+          return;
+        }
+        substractedItem.quantity--;
+        this.setCartValue(cart);
+        Storage.saveCart(cart);
+        subQuantity.previousElementSibling.innerText = substractedItem.quantity;
+      }
+    });
   }
   removeItem(id) {
     cart = cart.filter((cItem) => cItem.id !== id);
