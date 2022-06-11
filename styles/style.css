@@ -371,6 +371,9 @@ aside {
   align-items: center;
   margin-bottom: 5px;
 }
+.cart-item-desc {
+  width: 40%;
+}
 .cart-item-controller {
   display: flex;
   flex-direction: column;
