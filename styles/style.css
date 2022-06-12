@@ -313,6 +313,14 @@ footer button {
 footer button a {
   color: var(--main-black);
 }
+.cartBtn {
+  position: relative;
+}
+.cartBtn a::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+}
 footer button:hover,
 footer button:active,
 footer button:focus {
@@ -425,7 +433,7 @@ aside {
   border: 1px solid var(--primary-color);
 }
 .backdrop {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
   top: 0;
   bottom: 0;
